@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fishing Reports - Yamamoto 5" Senko</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://use.typekit.net/[your-kit-code].css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0037FF;
+            --primary-red: #FF3D00;
+            --text-dark: #1A1A1A;
+            --text-light: #666666;
+            --background-light: #F5F5F5;
+            --card-background: #FFFFFF;
+            --border-light: #E5E5E5;
+            --font-headers: "termina", sans-serif;
+            --font-body: "Roboto", sans-serif;
+        }
+
+        body {
+            font-family: var(--font-body);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+        }
+
+        h1, h2, .accordion-header {
+            font-family: var(--font-headers);
+            font-weight: 700;
+        }
+
+        .header h1 {
+            font-family: var(--font-headers);
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header p {
+            color: var(--primary-blue);
+            font-size: 18px;
+        }
+
+        .accordion {
+            margin-bottom: 16px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--card-background);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .accordion-header {
+            background: white;
+            color: var(--text-dark);
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 24px;
+            font-weight: 700;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .accordion-header:hover {
+            background: var(--background-light);
+        }
+
+        .accordion-content {
+            display: none;
+            padding: 24px;
+            background: white;
+        }
+
+        .accordion-content.active {
+            display: block;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 20px 0;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        thead tr,
+        tr:first-child {
+            background: #F5F7FA;
+        }
+
+        tr:first-child th {
+            background: #F5F7FA;
+        }
+
+        tbody tr,
+        tr:not(:first-child) {
+            background: white;
+        }
+
+        th {
+            padding: 16px 20px;
+            font-family: var(--font-body);
+            font-weight: 500;
+            color: var(--text-dark);
+            text-align: left;
+        }
+
+        td {
+            padding: 16px 20px;
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            background: white;
+            border-bottom: 1px solid #E5E5E5;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 24px 0 16px;
+            color: var(--text-dark);
+        }
+
+        h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 20px 0 12px;
+            color: var(--text-dark);
+        }
+
+        ul, ol {
+            padding-left: 24px;
+            margin: 16px 0;
+            color: var(--text-light);
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        p {
+            line-height: 1.6;
+            color: var(--text-light);
+            margin: 16px 0;
+        }
+
+        .gradient-button {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-red));
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 100px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 24px;
+            text-align: center;
+        }
+
+        .arrow {
+            transition: transform 0.3s;
+            color: var(--primary-blue);
+        }
+
+        .accordion-header.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        .back-button {
+            background: transparent;
+            border: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--font-body);
+            font-size: 18px;
+            padding: 20px;
+            cursor: pointer;
+        }
+
+        .back-button svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-red));
+            padding-bottom: 40px;
+            margin-bottom: 40px;
+        }
+
+        .header-content {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .pro-logo {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 24px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+        }
+
+        .brand-name {
+            font-family: var(--font-headers);
+            color: var(--primary-blue);
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .page-title {
+            font-family: var(--font-headers);
+            font-size: 48px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin: 16px 0;
+            color: var(--text-dark);
+        }
+
+        .subtitle {
+            font-family: var(--font-body);
+            color: var(--primary-blue);
+            font-size: 18px;
+        }
+
+        /* For the progress bar shown in the mock */
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #E5E5E5;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-red));
+            border-radius: 4px;
+            width: 40%; /* Adjust based on actual progress */
+        }
+
+        /* Update styles for PRO sections */
+        .pro-section {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .pro-badge {
+            width: 32px;
+            height: 32px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        /* Update styles for selective PRO content blur */
+        .pro-content-blur tr:not(:first-child) {
+            filter: blur(4px);
+            user-select: none;
+            pointer-events: none;
+        }
+
+        /* Keep headers and first row clear */
+        thead tr,
+        tbody tr:first-child {
+            filter: none !important;
+        }
+
+        /* Update PRO upgrade prompt styles */
+        .pro-upgrade-prompt {
+            text-align: center;
+            padding: 24px;
+            margin: 20px 0;
+        }
+
+        .pro-upgrade-button {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <header class="page-header">
+        <button class="back-button">
+            <svg viewBox="0 0 24 24" fill="white">
+                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+            </svg>
+            Back
+        </button>
+    </header>
+    
+    <div class="header-content">
+        <img src="pro-logo.png" alt="PRO" class="pro-logo">
+        <div class="brand-name">OMNIA PRO AI</div>
+        <h1 class="page-title">DEEP INSIGHTS</h1>
+        <div class="subtitle">Fueled from local angler fishing reports</div>
+    </div>
+
+    <div class="accordion">
+        <div class="accordion-header">
+            Overview
+            <span class="arrow">▼</span>
+        </div>
+        <div class="accordion-content">
+            <h3>Summary</h3>
+            <ul>
+                <li>Versatile bait effective for multiple bass fishing techniques (Wacky Rig, Texas Rig, Neko Rig, Drop Shot, Carolina Rig)</li>
+                <li>Excels in various environments from docks and brush piles to vegetation and rocky structure</li>
+                <li>Consistently produces across all seasons with peak effectiveness during spring and summer periods</li>
+                <li>Effective in depths ranging from shallow shorelines to deep structure</li>
+                <li>Primary effectiveness for Largemouth Bass with strong success for Smallmouth Bass</li>
+            </ul>
+
+            <h3>General</h3>
+            <p>The Yamamoto 5" Senko Worm has earned its reputation as one of the most versatile and effective soft plastic baits in the fishing industry. Featuring a unique salt-and-sand-loaded formula that creates a distinctive shimmying action with a quivering tail, this bait consistently produces results across a wide range of conditions and seasons. Whether rigged wacky style, Texas-rigged, or on a Neko rig, the Senko proves equally effective in water temperatures from the high 40s to upper 80s, making it a true year-round producer for both largemouth and smallmouth bass.</p>
+            
+            <p>Fishing reports consistently highlight the Senko's effectiveness around various structure types, particularly docks, submerged vegetation, and laydowns, with successful applications in both shallow and deep water scenarios. The bait's versatility is further demonstrated by its ability to produce in both clear and stained water conditions, while its simple yet effective design makes it accessible to novice anglers while remaining a go-to choice for experienced fishermen. Though particularly deadly when wacky-rigged, the Senko's adaptability to multiple rigging techniques allows anglers to adjust their presentation based on conditions and cover, consistently triggering strikes when other baits fail to produce.</p>
+
+            <h3>Species Effectiveness</h3>
+            <table>
+                <tr>
+                    <th>Species</th>
+                    <th>Frequency</th>
+                    <th>Percentage</th>
+                </tr>
+                <tr>
+                    <td>Largemouth Bass</td>
+                    <td>156</td>
+                    <td>79.19%</td>
+                </tr>
+                <tr>
+                    <td>Smallmouth Bass</td>
+                    <td>27</td>
+                    <td>13.71%</td>
+                </tr>
+                <tr>
+                    <td>Spotted Bass</td>
+                    <td>7</td>
+                    <td>3.55%</td>
+                </tr>
+                <tr>
+                    <td>Northern Pike</td>
+                    <td>3</td>
+                    <td>1.52%</td>
+                </tr>
+                <tr>
+                    <td>Walleye</td>
+                    <td>2</td>
+                    <td>1.02%</td>
+                </tr>
+                <tr>
+                    <td>Common Carp</td>
+                    <td>1</td>
+                    <td>0.51%</td>
+                </tr>
+                <tr>
+                    <td>Panfish/Bluegill</td>
+                    <td>1</td>
+                    <td>0.51%</td>
+                </tr>
+            </table>
+
+            <h3>Seasonal Performance</h3>
+            <p>The Yamamoto 5" Senko Worm demonstrates remarkable versatility across seasons, with particularly strong performance in Spring (39.1% of reports) and Summer (38.0%), primarily targeting Largemouth and Smallmouth Bass. The bait maintains consistent effectiveness ratings across seasons (overall average 1.84), with highest success in spring (1.92) when rigged wacky style around shallow cover. While most effective in warmer months, the bait's versatility extends into fall and winter when fished deeper with modified techniques.</p>
+            
+            <table>
+                <tr>
+                    <th>Season</th>
+                    <th>Number of Reports</th>
+                    <th>Percentage of Total Reports</th>
+                </tr>
+                <tr>
+                    <td>Spring</td>
+                    <td>111</td>
+                    <td>39.1%</td>
+                </tr>
+                <tr>
+                    <td>Summer</td>
+                    <td>108</td>
+                    <td>38.0%</td>
+                </tr>
+                <tr>
+                    <td>Fall</td>
+                    <td>52</td>
+                    <td>18.3%</td>
+                </tr>
+                <tr>
+                    <td>Winter</td>
+                    <td>13</td>
+                    <td>4.6%</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="accordion">
+        <div class="accordion-header">
+            How To Fish
+            <span class="arrow">▼</span>
+        </div>
+        <div class="accordion-content">
+            <h3>Depth and Habitat</h3>
+            <p>Anglers report success in various depths, from shallow shorelines to deeper structures. Particularly effective habitats include:</p>
+            <ul>
+                <li>Docks</li>
+                <li>Vegetation (weeds, reeds)</li>
+                <li>Open water</li>
+                <li>Drop-offs and ledges</li>
+            </ul>
+
+            <h3>Popular Rigging Techniques</h3>
+            <ol>
+                <li>Wacky Rig: Most frequently mentioned, especially for finesse presentations</li>
+                <li>Texas Rig: Popular for fishing around cover and vegetation</li>
+                <li>Weightless Rig: Effective in open water or near the surface</li>
+                <li>Neko Rig: Noted for fishing in deeper waters</li>
+                <li>Carolina Rig: Used for covering water in deeper areas</li>
+            </ol>
+
+            <h3>Anglers Say Review Summary</h3>
+            <ul>
+                <li><strong>Versatility</strong> (30 mentions - 28 positive, 2 neutral)
+                    <ul>
+                        <li>Anglers appreciate the Senko's effectiveness with multiple rigging styles and in various habitats</li>
+                        <li>"It works 90% of the time with any rig, in any area."</li>
+                    </ul>
+                </li>
+                <li><strong>Effectiveness for Big Bass</strong> (25 mentions - 23 positive, 2 neutral)
+                    <ul>
+                        <li>Many reports highlight the Senko's ability to catch larger bass</li>
+                        <li>"Caught a few nice bass in the 5 pound range on a wacky rigged Senko."</li>
+                    </ul>
+                </li>
+                <li><strong>Year-round Performance</strong> (20 mentions - 18 positive, 2 neutral)
+                    <ul>
+                        <li>Anglers report success with Senkos in all seasons</li>
+                        <li>"The senko works year round, throw in and around brush."</li>
+                    </ul>
+                </li>
+                <li><strong>Dock Fishing</strong> (35 mentions - 33 positive, 2 neutral)
+                    <ul>
+                        <li>Senkos are particularly popular for fishing around docks</li>
+                        <li>"Catches them under docks year round and is super effective."</li>
+                    </ul>
+                </li>
+                <li><strong>Finesse Presentations</strong> (28 mentions - 26 positive, 2 neutral)
+                    <ul>
+                        <li>Many anglers praise the Senko's effectiveness when a subtle approach is needed</li>
+                        <li>"When the bite was tough, the wacky rigged senko was the only thing producing."</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>Rigging and Techniques</h3>
+            <p>Anglers commonly pair the Senko with high action rods (7'6" to 7'8") and high-speed reels (8:1 ratio). Line choices vary between straight fluorocarbon (15lb) or a braided main line (30-40lb) with a fluorocarbon leader. The most frequently mentioned retrieval method is a "pop & drop" presentation - letting the jig sink to the bottom, then jigging and allowing it to fall back down.</p>
+
+            <h3>Tips and Tricks</h3>
+            <ul>
+                <li>Skipping under docks is a common and effective technique</li>
+                <li>Downsizing and weedless presentations are frequently mentioned as productive</li>
+                <li>Using O-rings can extend the life of the bait</li>
+                <li>Sinking speed and subtle action of the bait add to its effectiveness</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="accordion">
+        <div class="accordion-header">
+            Fish With
+            <span class="arrow">▼</span>
+        </div>
+        <div class="accordion-content">
+            <p>The Yamamoto Senko Worm 5" proves to be a highly versatile bait across all seasons, with peak effectiveness during spring spawn and summer periods. The reports consistently show success when paired with finesse presentations, particularly wacky and Texas rigs. The most effective setups utilize medium-power spinning gear with fluorocarbon leaders, allowing for precise presentations around structure. Water temperature significantly influences presentation speed, with slower techniques preferred in colder water. The bait's effectiveness is enhanced when paired with appropriate hooks and rigging tools, with wacky-style hooks being the most commonly reported successful pairing. For optimal performance, anglers should adjust their weight selection based on depth and desired fall rate, with most success coming from weightless or lightweight presentations in shallow water and slightly heavier setups for deeper applications.</p>
+
+            <h3>Pairs With</h3>
+            <table>
+                <tr>
+                    <th>Pairing Category</th>
+                    <th>Recommended Product</th>
+                    <th>Alternative Product</th>
+                    <th>Notes</th>
+                </tr>
+                <tr>
+                    <td>Hook</td>
+                    <td>VMC Wacky Hook</td>
+                    <td>Owner Sniper Finesse</td>
+                    <td>Wacky style for finesse, size 1/0-2/0 most common</td>
+                </tr>
+                <tr>
+                    <td>Weight</td>
+                    <td>Tungsten Nail Weight</td>
+                    <td>VMC Wacky Jig</td>
+                    <td>1/16-1/8 oz for Neko rig, weighted wacky</td>
+                </tr>
+                <tr>
+                    <td>Line</td>
+                    <td>Seaguar InvizX 8-12lb</td>
+                    <td>PowerPro 20lb Braid</td>
+                    <td>Fluorocarbon for stealth, braid with leader</td>
+                </tr>
+                <tr>
+                    <td>Rod</td>
+                    <td>7' Medium Spinning</td>
+                    <td>7'2" Medium-Light</td>
+                    <td>Fast action for sensitivity and hook sets</td>
+                </tr>
+                <tr>
+                    <td>Tool</td>
+                    <td>VMC Crossover Ring Tool</td>
+                    <td>O-Wacky Tool</td>
+                    <td>Essential for rigging and bait longevity</td>
+                </tr>
+                <tr>
+                    <td>Reel</td>
+                    <td>2500 Size Spinning</td>
+                    <td>3000 Size Spinning</td>
+                    <td>Higher gear ratio (6.2:1+) preferred</td>
+                </tr>
+            </table>
+
+            <h3>By Technique Most Reported</h3>
+            <p>*if braid to leader mention knot</p>
+            <table>
+                <tr>
+                    <th>Technique</th>
+                    <th>Rod Length</th>
+                    <th>Power</th>
+                    <th>Action</th>
+                    <th>Main Line</th>
+                    <th>Leader</th>
+                    <th>Hook Size</th>
+                </tr>
+            </table>
+
+            <h3>Top 5 Products That Pair with Yamamoto 5" Senko by Technique</h3>
+            <ol>
+                <li>VMC Crossover Pliers Standard – 40 reports</li>
+                <li>Seaguar InvizX 100% Fluorocarbon 12lb / 200 Yards – 25 reports</li>
+                <li>BaitFuel Bait Fuel Gel 5 oz – 21 reports</li>
+                <li>VMC Neko Hook #2 / 6 Pack – 20 reports</li>
+                <li>Seaguar InvizX 100% Fluorocarbon 10lb / 200 Yards – 20 reports</li>
+                <li>VMC Crossover Ring 10pk Clear / 7mm – 17 reports</li>
+                <li>Shimano Vanford Spinning Reel - EOL 2500 / 6.0:1 – 17 reports</li>
+                <li>Owner Jungle Wacky Weedless Hook 1/0 – 16 reports</li>
+                <li>VMC Wacky Hook 1/0 / 6 Pack – 16 reports</li>
+                <li>Seaguar InvizX 100% Fluorocarbon 8lb / 200 Yards – 15 reports</li>
+            </ol>
+
+            <h3>Complementary Products by Species and Techniques</h3>
+            <h4>1. Largemouth Bass - Carolina Rigs:</h4>
+            <ul>
+                <li>Products: WOO! Tungsten Stopper Pegs, Daiwa Fuego Reel</li>
+                <li>Focus: Weighted rigs for deeper presentations</li>
+            </ul>
+
+            <h4>2. Largemouth Bass - Chatterbaits:</h4>
+            <ul>
+                <li>Products: Z-Man Jerk Shadz, Yamamoto Zako</li>
+                <li>Focus: High vibration baits for murky water</li>
+            </ul>
+
+            <h4>3. Largemouth Bass - Dropshot:</h4>
+            <ul>
+                <li>Products: Sufix 832 Braid, Owner Mosquito Hooks</li>
+                <li>Focus: Finesse presentations, targeting suspended fish</li>
+            </ul>
+
+            <h4>4. Largemouth Bass - Neko Rigs:</h4>
+            <ul>
+                <li>Products: Humminbird Helix 10, VMC Neko Hooks</li>
+                <li>Focus: Precise placement, leveraging sonar and specialized hooks</li>
+            </ul>
+
+            <h3>Key Patterns</h3>
+            <ul>
+                <li><strong>Precision and Finesse Focus:</strong> Tools like the VMC Crossover Pliers and rings highlight anglers' focus on finesse setups such as wacky rigs and Neko rigs.</li>
+                <li><strong>Fluorocarbon Line Preference:</strong> Seaguar InvizX Fluorocarbon is frequently used, suggesting anglers value invisibility and sensitivity.</li>
+                <li><strong>Multipurpose Use:</strong> Shimano reels and braid lines appear across techniques, indicating versatility in how anglers use their equipment.</li>
+            </ul>
+
+            <p>This analysis reveals that Senko baits are often used alongside finesse-focused gear such as rings and fluorocarbon lines. The most common complementary products particularly suit setups by combining Senkos with the stealth and precision required in wacky rig hooks and fluorocarbon lines.</p>
+        </div>
+    </div>
+
+    <div class="accordion">
+        <div class="accordion-header">
+            FAQs
+            <span class="arrow">▼</span>
+        </div>
+        <div class="accordion-content">
+            <h3>Q1: What's the best way to rig a Yamamoto 5" Senko?</h3>
+            <p>Most popular rigging methods vary by water depth and conditions. The best method depends on the situation; however, many anglers suggest a wacky rig paired with medium or heavy cover on a high action rod for finesse presentations in shallow waters.</p>
+
+            <h3>Q2: What colors work best for the 5" Senko?</h3>
+            <p>Bluegill patterns are among the most consistently mentioned colors. However, black/blue and white are often effective for anglers fishing in stained or murky waters. In clearer water, white or bluegill seems to be the ticket in the fall due to its subtle presentation.</p>
+
+            <h3>Q3: How do you fish a Senko around docks?</h3>
+            <p>Anglers often skip Senkos under docks or fish along dock edges. A wacky rig is often used, allowing for a more natural fall in the water column. When fish are staging near brush piles or structure, pitching and letting the bait sink is commonly recommended.</p>
+
+            <h3>Q4: Are Senkos effective in both shallow and deep water?</h3>
+            <p>Yes, anglers report success in both shallow and deep water. Senkos are effective in shallow water around cover, but also perform well when fished with a Carolina rig or Neko rig to "drag" bait in deeper water structures.</p>
+        </div>
+    </div>
+
+    <div class="accordion">
+        <div class="accordion-header">
+            Regionality
+            <span class="arrow">▼</span>
+        </div>
+        <div class="accordion-content">
+            <h3>Regional Success</h3>
+            <p>The Yamamoto 5" Senko is reported to be effective across a wide range of geographic locations in the United States, with the highest user mentions from the Midwest and Southeastern areas, with significant mentions from states bordering the Great Lakes.</p>
+
+            <p>The fishing reports primarily come from the Midwestern United States, with a limited number of reports present mentioning fishing in the Western and Southern regions of the United States. This bait appears to perform best in natural lakes with moderate clarity, where bluegill and perch are the dominant forage species.</p>
+
+            <p>Frequent mentions include public lakes and reservoirs in the Midwest, including:</p>
+            <ul>
+                <li>Mille Lacs</li>
+                <li>Otter Tail Lake</li>
+                <li>Gull Lake</li>
+                <li>Whitefish Chain in Minnesota</li>
+                <li>Lake St. Clair</li>
+                <li>Lake Simcoe</li>
+                <li>Lake St. Lawrence</li>
+                <li>Lake Ontario</li>
+            </ul>
+            
+            <p>Additionally, areas near Detroit, Lake Erie, and several New York state lakes are reported, specifically noting the jig's effectiveness in the listed areas. Water clarity, depth, and bottom composition are frequently included in the reported usage in the provided data and appear to be key indicators of the product's overall effectiveness.</p>
+        </div>
+    </div>
+
+    <div class="accordion">
+        <div class="accordion-header">
+            <div class="pro-section">
+                <img src="pro-logo.png" alt="PRO" class="pro-badge">
+                Depth & Weight Selection Guide
+            </div>
+            <span class="arrow">▼</span>
+        </div>
+        <div class="accordion-content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Water Depth</th>
+                        <th>Favored Weight</th>
+                        <th>Target</th>
+                    </tr>
+                </thead>
+                <tbody class="pro-content-blur">
+                    <tr>
+                        <td>6-10 ft</td>
+                        <td>1/2 oz</td>
+                        <td>Shallow weed edge...</td>
+                    </tr>
+                    <tr>
+                        <td>10-15 ft</td>
+                        <td>5/8 oz</td>
+                        <td>Mid-depth structure,...</td>
+                    </tr>
+                    <tr>
+                        <td>15+ ft</td>
+                        <td>3/4 oz</td>
+                        <td>Deep rock piles, offsh...</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="pro-upgrade-prompt">
+                <img src="button-unlock-pro.png" alt="Unlock PRO Insights FREE" class="pro-upgrade-button">
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion">
+        <div class="accordion-header">
+            <div class="pro-section">
+                <img src="pro-logo.png" alt="PRO" class="pro-badge">
+                Color Selection Guide
+            </div>
+            <span class="arrow">▼</span>
+        </div>
+        <div class="accordion-content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Water Clarity</th>
+                        <th>Primary Choice</th>
+                        <th>Secondary Choice</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody class="pro-content-blur">
+                    <tr>
+                        <td>Clear</td>
+                        <td>Bluegill pattern</td>
+                        <td>White</td>
+                        <td>Best all around bluegill beds</td>
+                    </tr>
+                    <tr>
+                        <td>Stained/Off-color</td>
+                        <td>White</td>
+                        <td>Shad patterns</td>
+                        <td>White consistently produces</td>
+                    </tr>
+                    <tr>
+                        <td>Heavy Cover</td>
+                        <td>White</td>
+                        <td>Bluegill pattern</td>
+                        <td>Use heavier weights</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="pro-upgrade-prompt">
+                <img src="button-unlock-pro.png" alt="Unlock PRO Insights FREE" class="pro-upgrade-button">
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion">
+        <div class="accordion-header">
+            <div class="pro-section">
+                <img src="pro-logo.png" alt="PRO" class="pro-badge">
+                How To
+            </div>
+            <span class="arrow">▼</span>
+        </div>
+        <div class="accordion-content">
+            <h3>Seasonal Pattern Summary</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Season</th>
+                        <th>Effectiveness</th>
+                        <th>Key Locations</th>
+                        <th>Target Depth</th>
+                    </tr>
+                </thead>
+                <tbody class="pro-content-blur">
+                    <tr>
+                        <td>Post-spawn</td>
+                        <td>High</td>
+                        <td>Deeper weed edges, bluegill beds</td>
+                        <td>12-15 ft.</td>
+                    </tr>
+                    <tr>
+                        <td>Summer</td>
+                        <td>Excellent</td>
+                        <td>Rock piles, points, deep sstrcture</td>
+                        <td>12-25 ft</td>
+                    </tr>
+                    <tr>
+                        <td>Fall</td>
+                        <td>Good</td>
+                        <td>Deep weed edges, points</td>
+                        <td>12-20 ft</td>
+                    </tr>
+                    <tr>
+                        <td>Winter</td>
+                        <td>Limited Data</td>
+                        <td>No REports</td>
+                        <td>No data</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Strike Zone Analysis</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Retrieve Phase</th>
+                        <th>Strike Frequency</th>
+                        <th>Technique Tips</th>
+                    </tr>
+                </thead>
+                <tbody class="pro-content-blur">
+                    <tr>
+                        <td>Initial Drop</td>
+                        <td>High</td>
+                        <td>Watch line on fall</td>
+                    </tr>
+                    <tr>
+                        <td>Bottom Contact</td>
+                        <td>Medium</td>
+                        <td>Feel for structure</td>
+                    </tr>
+                    <tr>
+                        <td>Lift/Rise</td>
+                        <td>Medium-High</td>
+                        <td>Steady lift pace</td>
+                    </tr>
+                    <tr>
+                        <td>Fall After Lift</td>
+                        <td>Very High</td>
+                        <td>Maintain line tension</td>
+                    </tr>
+                    <tr>
+                        <td>Near Boat</td>
+                        <td>Low</td>
+                        <td>Speed up retrieve</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Structure Success Rate</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Structure Type</th>
+                        <th>Effectiveness Rating</th>
+                        <th>Best Weight</th>
+                        <th>Best Retrieve</th>
+                    </tr>
+                </thead>
+                <tbody class="pro-content-blur">
+                    <tr>
+                        <td>Rock Piles</td>
+                        <td>5 stars</td>
+                        <td>3/4 oz</td>
+                        <td>Slow yo-yo</td>
+                    </tr>
+                    <tr>
+                        <td>Deep Weed Edges</td>
+                        <td>5 stars</td>
+                        <td>5/8-3/4 oz</td>
+                        <td>Swimming</td>
+                    </tr>
+                    <tr>
+                        <td>Points</td>
+                        <td>4 stars</td>
+                        <td>3/4 oz</td>
+                        <td>Yo-yo</td>
+                    </tr>
+                    <tr>
+                        <td>Hard Bottom</td>
+                        <td>4 stars</td>
+                        <td>3/4 oz</td>
+                        <td>Dragging</td>
+                    </tr>
+                    <tr>
+                        <td>Inside Turns</td>
+                        <td>4 stars</td>
+                        <td>5/8-3/4 oz</td>
+                        <td>Yo-yo</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Common Fishing Scenarios</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Scenario</th>
+                        <th>Technique</th>
+                        <th>Weight</th>
+                        <th>Color</th>
+                    </tr>
+                </thead>
+                <tbody class="pro-content-blur">
+                    <tr>
+                        <td>Schooled bass on points</td>
+                        <td>Yo-yo retrieve</td>
+                        <td>3/4 oz</td>
+                        <td>White</td>
+                    </tr>
+                    <tr>
+                        <td>Following bluegill schools</td>
+                        <td>Swimming retrieve</td>
+                        <td>5/8 oz</td>
+                        <td>Bluegill pattern</td>
+                    </tr>
+                    <tr>
+                        <td>Deep weed edges</td>
+                        <td>Slow lift and fall</td>
+                        <td>3/4 oz</td>
+                        <td>White</td>
+                    </tr>
+                    <tr>
+                        <td>Hard bottom areas</td>
+                        <td>Dragging/hopping</td>
+                        <td>3/4 oz</td>
+                        <td>Either pattern</td>
+                    </tr>
+                    <tr>
+                        <td>Clear water rocks</td>
+                        <td>Slow yo-yo</td>
+                        <td>3/5-3/4 oz</td>
+                        <td>Bluegill pattern</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="pro-upgrade-prompt">
+                <img src="button-unlock-pro.png" alt="Unlock PRO Insights FREE" class="pro-upgrade-button">
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion">
+        <div class="accordion-header">
+            <div class="pro-section">
+                <img src="pro-logo.png" alt="PRO" class="pro-badge">
+                Conditions
+            </div>
+            <span class="arrow">▼</span>
+        </div>
+        <div class="accordion-content">
+            <h3>Summary of Ideal Weather Conditions</h3>
+            <ul class="pro-content-blur">
+                <li>Water Temperature: 60-80°F</li>
+                <li>Wind Speed: 0-5 MPH</li>
+                <li>Barometric Pressure: 30.18-30.26 In Hg</li>
+                <li>Moon Phase: Waning Gibbous or Waning Crescent</li>
+                <li>Cloud Cover: 0-20%</li>
+                <li>Air Temperature: 55-75°F</li>
+            </ul>
+
+            <h3>Water Temperature Thresholds</h3>
+            <ul class="pro-content-blur">
+                <li>Optimal Temperature Range: 60-80°F</li>
+                <li>Performance Drop Below 50°F</li>
+            </ul>
+
+            <h3>Wind Speed Impact</h3>
+            <ul class="pro-content-blur">
+                <li>Correlation with Quality: -0.06 (negative but weak)</li>
+                <li>Best Wind Speeds: 0 to 5 MPH</li>
+            </ul>
+
+            <div class="pro-upgrade-prompt">
+                <img src="button-unlock-pro.png" alt="Unlock PRO Insights FREE" class="pro-upgrade-button">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const isActive = header.classList.contains('active');
+
+                // Close all accordions
+                accordionHeaders.forEach(h => {
+                    h.classList.remove('active');
+                    h.nextElementSibling.classList.remove('active');
+                });
+
+                // If the clicked accordion wasn't active, open it
+                if (!isActive) {
+                    header.classList.add('active');
+                    content.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
